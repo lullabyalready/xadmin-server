@@ -139,7 +139,7 @@ def check_server_performance_period():
 
 @shared_task(verbose_name=_("Run background task view set"))
 def background_task_view_set_job(view: str, meta: dict, data: str, action_map: dict):
-    cache = CacheList(f"view_task_{meta.get("task_id").split("_")[0]}", timeout=3600 * 24)
+    cache = CacheList(f"view_task_{meta.get('task_id').split('_')[0]}", timeout=3600 * 24)
     task_info = {
         "start_time": local_now_display(),
         "task_id": meta.get("task_id"),

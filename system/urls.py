@@ -35,6 +35,7 @@ from system.views.search.role import SearchRoleViewSet
 from system.views.search.user import SearchUserViewSet
 from system.views.user.login_log import UserLoginLogViewSet
 from system.views.user.userinfo import UserInfoViewSet
+from system.views.email_account import UserEmailAccountViewSet
 
 app_name = "system"
 
@@ -75,6 +76,7 @@ router.register('search/menu', SearchMenuViewSet, basename='SearchMenu')
 no_detail_router.register('userinfo', UserInfoViewSet, basename='userinfo')
 router.register('user/log', UserLoginLogViewSet, basename='user_login_log')
 router.register('configs', ConfigsViewSet, basename='configs')
+router.register('email/account', UserEmailAccountViewSet, basename='user_email_account')
 
 # 系统设置相关路由
 router.register('user', UserViewSet, basename='user')
