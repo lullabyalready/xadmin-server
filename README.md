@@ -50,6 +50,27 @@ python -m celery -A server worker -P threads -l INFO -c 10 -Q celery --heartbeat
 python -m celery -A server flower -logging=info --url_prefix=api/flower --auto_refresh=False  --address=0.0.0.0 --port=5566
 ```
 
+## 邮箱配置与邮件拉取
+
+1. 在 `config.yml` 中启用邮件并配置服务器:
+
+   ```yaml
+   EMAIL_ENABLED: true
+   EMAIL_HOST: imap.example.com
+   EMAIL_PORT: 993
+   EMAIL_HOST_USER: "user@example.com"
+   EMAIL_HOST_PASSWORD: "password"
+   EMAIL_USE_SSL: true
+   ```
+
+2. 通过系统管理界面添加用户邮箱账号。
+
+3. Celery Beat 会自动创建名为 `system.fetch_user_emails` 的周期任务，每 5 分钟拉取一次新邮件并转成站内通知。亦可在 Django shell 中手动触发:
+
+   ```shell
+   python manage.py shell -c "from system.tasks_email import fetch_user_emails; fetch_user_emails.delay()"
+   ```
+
 ## 捐赠or鼓励
 
 如果你觉得这个项目帮助到了你，你可以[star](https://github.com/nineaiyu/xadmin-server)表示鼓励，也可以帮作者买一杯果汁🍹表示鼓励。
