@@ -121,6 +121,7 @@ def clean_celery_periodic_tasks():
 @after_app_ready_start
 def create_or_update_registered_periodic_tasks():
     from .celery.decorator import get_register_period_tasks
+    from system import tasks_email  # noqa: F401
     for task in get_register_period_tasks():
         create_or_update_celery_periodic_tasks(task)
 
