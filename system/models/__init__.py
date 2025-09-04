@@ -16,3 +16,4 @@ from .permission import *
 from .role import *
 from .upload import *
 from .user import *
+from .email_account import *
